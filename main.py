@@ -30,7 +30,8 @@ def main():
             # if usuario_logado == True:
                 titulo = input("Título do Projeto: ")
                 descricao = input("Descrição: ")
-                resultado = criar_projeto(db, titulo, descricao) #, usuario_logado.id
+                criador_id = input("Quem ficara responsavel por esse projeto? ")
+                resultado = criar_projeto(db, titulo, descricao, criador_id) #, usuario_logado.id
                 print(resultado["message"])
             # else:
             #     print("Erro: Você precisa estar logado para criar um projeto.")
