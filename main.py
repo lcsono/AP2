@@ -30,7 +30,7 @@ def main():
             # if usuario_logado == True:
                 titulo = input("Título do Projeto: ")
                 descricao = input("Descrição: ")
-                criador_id = input("Quem ficara responsavel por esse projeto? ")
+                criador_id = input("ID do Usuário a ser vinculado: ")
                 resultado = criar_projeto(db, titulo, descricao, criador_id) #, usuario_logado.id
                 print(resultado["message"])
             # else:
@@ -41,7 +41,8 @@ def main():
                 titulo = input("Título da Tarefa: ")
                 descricao = input("Descrição: ")
                 projeto_id = int(input("ID do Projeto: "))
-                resultado = criar_tarefa(db, titulo, descricao, projeto_id) #, usuario_logado.id
+                usuario_id = int(input("ID do Usuário a ser vinculado: "))
+                resultado = criar_tarefa(db, titulo, descricao, projeto_id, usuario_id) #, usuario_logado.id
                 print(resultado["message"])
             # else:
             #     print("Erro: Você precisa estar logado para criar uma tarefa.")
