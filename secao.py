@@ -10,7 +10,7 @@ def login(db: Session, nome: str):
         usuario_logado = True
         print(f"Bem-vindo, {usuario.nome}!")
     else:
-        print("Usuário não encontrado, por favor faça o cadastre...")
+        print("Usuário não encontrado, por favor faça o cadastro...")
     return usuario_logado
 
 def logout():
