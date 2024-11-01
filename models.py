@@ -19,7 +19,7 @@ class Projeto(Base):
     id = Column(Integer, primary_key=True)
     titulo = Column(String, nullable=False)
     descricao = Column(String)
-    criador_id = Column(Integer, ForeignKey('usuarios.id'))
+    id_usuario = Column(Integer, ForeignKey('usuarios.id'))
 
     criador = relationship("Usuario", back_populates="projetos")
     tarefas = relationship("Tarefa", back_populates="projeto")
@@ -31,8 +31,8 @@ class Tarefa(Base):
     titulo = Column(String, nullable=False)
     descricao = Column(String)
     status = Column(String, default="pendente")
-    projeto_id = Column(Integer, ForeignKey('projetos.id'))
-    usuario_id = Column(Integer, ForeignKey('usuarios.id'))
+    id_projeto = Column(Integer, ForeignKey('projetos.id'))
+    id_usuario = Column(Integer, ForeignKey('usuarios.id'))
 
     projeto = relationship("Projeto", back_populates="tarefas")
     usuario = relationship("Usuario", back_populates="tarefas")

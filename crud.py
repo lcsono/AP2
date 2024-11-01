@@ -16,9 +16,9 @@ def criar_usuario(db: Session, nome: str, email: str, senha: str):
         return {"success": False, "message": f"Erro ao criar usuário: {str(e)}"}
 
 # Funções de Projeto
-def criar_projeto(db: Session, titulo: str, descricao: str, criador_id: int):
+def criar_projeto(db: Session, titulo: str, descricao: str, id_usuario: int):
     try:
-        projeto = Projeto(titulo=titulo, descricao=descricao, criador_id=criador_id)
+        projeto = Projeto(titulo=titulo, descricao=descricao, id_usuario=id_usuario)
         db.add(projeto)
         db.commit()
         db.refresh(projeto)
@@ -28,9 +28,9 @@ def criar_projeto(db: Session, titulo: str, descricao: str, criador_id: int):
         return {"success": False, "message": f"Erro ao criar projeto: {str(e)}"}
 
 # Funções de Tarefa
-def criar_tarefa(db: Session, titulo: str, descricao: str, projeto_id: int, usuario_id: int):
+def criar_tarefa(db: Session, titulo: str, descricao: str, projeto_id: int, id_usuario: int):
     try:
-        tarefa = Tarefa(titulo=titulo, descricao=descricao, projeto_id=projeto_id, usuario_id=usuario_id)
+        tarefa = Tarefa(titulo=titulo, descricao=descricao, projeto_id=projeto_id, id_usuario=id_usuario)
         db.add(tarefa)
         db.commit()
         db.refresh(tarefa)
