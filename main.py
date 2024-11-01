@@ -21,9 +21,10 @@ def main():
             login(db, email)
         
         elif escolha == "2":
-            nome = input("Nome: ")
-            email = input("Email: ")
-            resultado = criar_usuario(db, nome, email)
+            nome = input("Digite o seu Nome: ")
+            email = input("Digite o seu melhor Email: ")
+            senha = input("Digite uma senha: ")
+            resultado = criar_usuario(db, nome, email, senha)
             print(resultado["message"])
         
         elif escolha == "3":

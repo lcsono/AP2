@@ -4,9 +4,9 @@ from sqlalchemy.exc import SQLAlchemyError
 from models import Usuario, Projeto, Tarefa
 
 # Funções de Usuário
-def criar_usuario(db: Session, nome: str, email: str):
+def criar_usuario(db: Session, nome: str, email: str, senha: str):
     try:
-        usuario = Usuario(nome=nome, email=email)
+        usuario = Usuario(nome=nome, email=email, senha=senha)
         db.add(usuario)
         db.commit()
         db.refresh(usuario)

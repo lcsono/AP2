@@ -7,7 +7,8 @@ class Usuario(Base):
 
     id = Column(Integer, primary_key=True)
     nome = Column(String, unique=True, nullable=False)
-    email = Column(String, unique=True, nullable=False)
+    email = Column(String, unique=True, nullable=True)
+    senha = Column(String, unique=True, nullable=False)
 
     tarefas = relationship("Tarefa", back_populates="usuario")
     projetos = relationship("Projeto", back_populates="criador")
