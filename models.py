@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Enum, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from db_config import Base
 
@@ -30,7 +30,8 @@ class Tarefa(Base):
     id = Column(Integer, primary_key=True)
     titulo = Column(String, nullable=False)
     descricao = Column(String)
-    status = Column(String, default="pendente")
+    status = Column(Enum('Pendente', 'Em_Andamento', 'Finalizada', name='status_enum'), default='Pendente')
+    prioridade = Column(Enum('Baixa', 'Média', 'Alta', name='prioridade_enum'), default='Baixa') 
     id_projeto = Column(Integer, ForeignKey('projetos.id'))
     id_usuario = Column(Integer, ForeignKey('usuarios.id'))
 
