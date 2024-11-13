@@ -29,6 +29,7 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
   - Objetivo: Finalizar o uso do sistema.
   - Ação: Escolha a opção 11. O sistema será encerrado e você voltará para o prompt de comando.
 
+
 ##  Como Usar
 1. Execute o script ```python ./main.py```.
 2. O sistema exibirá o menu com opções numeradas
