@@ -58,6 +58,35 @@ def atualizar_projeto(db: Session, projeto_id: int, novo_titulo: str = None, nov
         db.rollback()
         return {"success": False, "message": f"Erro ao atualizar projeto: {str(e)}"}
 
+def excluir_projeto(db: Session, projeto_id: int):
+    try:
+        tarefas_vinculadas = db.query(Tarefa).filter(Tarefa.id_projeto == projeto_id).all()
+
+        if tarefas_vinculadas:
+            tarefas_nomes = [tarefa.titulo for tarefa in tarefas_vinculadas]
+            return {
+                "success": False,
+                "message": f"Não é possível excluir o projeto. Existem tarefas vinculadas a ela, tarefa(s): {', '.join(tarefas_nomes)}.\n"
+                           "Por favor, finalize e exclua essa(s) tarefa(s) antes de excluir o projeto."
+            }
+        
+        projeto = db.query(Projeto).filter(Projeto.id == projeto_id).first()
+        if projeto:
+            db.delete(projeto)
+            db.commit()
+            return {"success": True, "message": "Projeto excluído com sucesso!"}
+        else:
+            return {"success": False, "message": "Projeto não encontrado."}
+
+    except Exception as e:
+        return {"success": False, "message": f"Erro ao tentar excluir o projeto: {str(e)}"}
+
+    
+    except SQLAlchemyError as e:
+        db.rollback()
+        return {"success": False, "message": f"Erro ao excluir projeto: {str(e)}"}
+
+
 # Funções de Tarefa
 def criar_tarefa(db: Session, titulo: str, descricao: str, id_projeto: int, id_usuario: int, prioridade: int = 1):
     try:

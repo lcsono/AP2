@@ -1,6 +1,6 @@
 from db_config import SessionLocal, Base, engine
-from crud import criar_usuario, criar_projeto, criar_tarefa, listar_tarefas, listar_usuarios, listar_projetos, atualizar_tarefa, excluir_tarefa, atualizar_projeto
-from secao import login, usuario_logado
+from crud import criar_usuario, criar_projeto, criar_tarefa, listar_tarefas, listar_usuarios, listar_projetos, atualizar_tarefa, excluir_tarefa, atualizar_projeto, excluir_projeto
+# from secao import login, usuario_logado
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,11 +13,12 @@ def main():
         print("3. Criar Projeto")
         print("4. Listar Projetos")
         print("5. Editar Projeto") 
-        print("6. Criar Tarefa")
-        print("7. Listar Tarefas")
-        print("8. Atualizar Tarefa")
-        print("9. Excluir Tarefa")
-        print("10. Sair")
+        print("6. Excluir Projeto")
+        print("7. Criar Tarefa")
+        print("8. Listar Tarefas")
+        print("9. Atualizar Tarefa")
+        print("10. Excluir Tarefa")
+        print("11. Sair")
 
         escolha = input("Escolha uma opção: ")
 
@@ -61,10 +62,15 @@ def main():
             print(resultado["message"])
 
         elif escolha == "6":
-            titulo = input("Título da Tarefa: ")
-            descricao = input("Descrição: ")
+            projeto_id = int(input("Digite o ID do Projeto que deseja excluir: "))
+            resultado = excluir_projeto(db, projeto_id)  
+            print(resultado["message"])
+
+        elif escolha == "7":
             id_projeto = int(input("ID do Projeto: "))
             id_usuario = int(input("ID do Usuário a ser vinculado: "))
+            titulo = input("Título da Tarefa: ")
+            descricao = input("Descrição: ")
             
             prioridade_input = input("Prioridade (1: para Baixa, 2: para Média, 3: para Alta): ")
             
@@ -74,11 +80,10 @@ def main():
                 print("Prioridade inválida! Definindo como 'Baixa'.")
                 prioridade_input = 1
 
-            # Passa o valor de prioridade como número inteiro
             resultado = criar_tarefa(db, titulo, descricao, id_projeto, id_usuario, prioridade_input)
             print(resultado["message"])
 
-        elif escolha == "7":
+        elif escolha == "8":
             resultado = listar_tarefas(db)
             if resultado["success"]:
                 print("\n--- Lista de Tarefas ---")
@@ -87,7 +92,7 @@ def main():
             else:
                 print(resultado["message"])
 
-        elif escolha == "8":
+        elif escolha == "9":
             tarefa_id = int(input("ID da Tarefa que será atualizada: "))
             novo_titulo = input("Novo Título (deixar em branco pra não alterar): ")
             nova_descricao = input("Nova Descrição (deixar em branco pra não alterar): ")
@@ -102,18 +107,18 @@ def main():
             resultado = atualizar_tarefa(db, tarefa_id, novo_titulo or None, nova_descricao or None, novo_status or None, nova_prioridade)
             print(resultado["message"])
 
-
-        elif escolha == "9":
+        elif escolha == "10":
             tarefa_id = int(input("ID da Tarefa a ser excluída: "))
             resultado = excluir_tarefa(db, tarefa_id)
             print(resultado["message"])
 
-        elif escolha == "10":
+        elif escolha == "11":
             print("Saindo...")
             break
 
         else:
             print("Opção inválida, tente novamente.")
+
 
 if __name__ == "__main__":
     main()
