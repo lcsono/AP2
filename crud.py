@@ -34,6 +34,13 @@ def criar_projeto(db: Session, titulo: str, descricao: str, id_usuario: int):
         db.rollback()
         return {"success": False, "message": f"Erro ao criar projeto: {str(e)}"}
 
+def listar_projetos(db: Session):
+    try:
+        projetos = db.query(Projeto).all()
+        return {"success": True, "projetos": projetos}
+    except SQLAlchemyError as e:
+        return {"success": False, "message": f"Erro ao listar projetos: {str(e)}"}
+
 # Funções de Tarefa
 def criar_tarefa(db: Session, titulo: str, descricao: str, id_projeto: int, id_usuario: int):
     try:
