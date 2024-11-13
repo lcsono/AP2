@@ -2,6 +2,8 @@
 # Documentação de Uso - Gerenciamento de Tarefas
 Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma interface de linha de comando. Abaixo estão as instruções para o uso do sistema.
 
+## Funcionalidades
+
 ### 1. Criar Usuário
   - Objetivo: Adicionar um novo usuário ao projeto.
   - Ação: Escolha a opção 1 no menu principal. Você será solicitado a fornecer o nome, e-mail e senha do novo usuário. Após preencher as informações, o sistema criará o usuário.
@@ -43,7 +45,7 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
 4. Escolha uma opção digitando o número correspondente e siga as instruções que aparecem no terminal.
 5. Para sair, basta escolher a opção 11.
 
-- **Observações**
+### **Observações**
   - Criar Usuário e Criar Projeto requerem informações específicas como nome, e-mail e ID de usuário (no caso de projetos).
   - Ao Excluir um Projeto, o sistema verificará se há tarefas vinculadas a ele. Se houver, será necessário primeiro excluir ou finalizar as tarefas para poder remover o projeto.
   - A Prioridade das Tarefas pode ser configurada para "Baixa", "Média" ou "Alta", sendo representada pelos números 1, 2 e 3, respectivamente.
