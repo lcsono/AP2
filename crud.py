@@ -15,6 +15,13 @@ def criar_usuario(db: Session, nome: str, email: str, senha: str):
         db.rollback()
         return {"success": False, "message": f"Erro ao criar usuário: {str(e)}"}
 
+def listar_usuarios(db: Session):
+    try:
+        usuarios = db.query(Usuario).all()
+        return {"success": True, "usuarios": usuarios}
+    except SQLAlchemyError as e:
+        return {"success": False, "message": f"Erro ao listar usuários: {str(e)}"}
+
 # Funções de Projeto
 def criar_projeto(db: Session, titulo: str, descricao: str, id_usuario: int):
     try:
