@@ -30,7 +30,7 @@ class Tarefa(Base):
     id = Column(Integer, primary_key=True)
     titulo = Column(String, nullable=False)
     descricao = Column(String)
-    status = Column(Enum('Pendente', 'Em_Andamento', 'Finalizada', name='status_enum'), default='Pendente')
+    status = Column(Enum('Pendente', 'Em_andamento', 'Finalizada', name='status_enum'), default='Pendente')
     prioridade = Column(Enum('Baixa', 'Média', 'Alta', name='prioridade_enum'), default='Baixa') 
     id_projeto = Column(Integer, ForeignKey('projetos.id'))
     id_usuario = Column(Integer, ForeignKey('usuarios.id'))

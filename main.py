@@ -141,10 +141,10 @@ def main():
 
 
         elif escolha == "9":
-            tarefa_id = int(input("ID da Tarefa que será atualizada: "))
+            tarefa_id = solicitar_id("ID da Tarefa que será atualizada: ")
             novo_titulo = input("Novo Título (deixar em branco pra não alterar): ")
             nova_descricao = input("Nova Descrição (deixar em branco pra não alterar): ")
-            novo_status = input("Novo Status (Em_Andamento, Finalizada, deixe em branco pra não alterar): ")
+            novo_status = input("Novo Status (Em_andamento, Finalizada, deixe em branco pra não alterar): ")
             
             nova_prioridade = input("Nova Prioridade (1: Baixa, 2: Média, 3: Alta, deixe em branco para não alterar): ").strip()
             if nova_prioridade not in ['1', '2', '3']:

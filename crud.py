@@ -128,7 +128,7 @@ def atualizar_tarefa(db: Session, tarefa_id: int, titulo: str = None, descricao:
                 tarefa.descricao = descricao
             if status:
                 status = status.capitalize()  
-                if status in ['Pendente', 'Em andamento', 'Finalizada']:  
+                if status in ['Pendente', 'Em_andamento', 'Finalizada']:  
                     tarefa.status = status
                 else:
                     return {"success": False, "message": "Status inválido."}
