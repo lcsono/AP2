@@ -50,17 +50,39 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
 
 
 ###  **Como Usar**
-1. Execute o script ```python ./main.py```.
-2. O sistema exibirá o menu com opções numeradas
+1. Acesse o sistema: 
+  Ao abrir o sistema, você verá um menu com as seguintes opções:
    ```
-    print("\n--- Gerenciamento de Tarefas ---")
-    print("1. Criar Usuário")
-    print("2. Listar Usuários")
-   ...
+    --- Gerenciamento de Tarefas ---
+    1. Criar Usuário
+    2. Listar Usuários
+    3. Criar Projeto
+    4. Listar Projetos
+    5. Editar Projeto
+    6. Excluir Projeto
+    7. Criar Tarefa
+    8. Listar Tarefas
+    9. Atualizar Tarefa
+    10. Excluir Tarefa
+    11. Sair
    ```
-   .
-4. Escolha uma opção digitando o número correspondente e siga as instruções que aparecem no terminal.
-5. Para sair, basta escolher a opção 11.
+2. Escolha uma opção no menu:
+   - Digite o número correspondente à ação que deseja realizar (por exemplo, 1 para Criar Usuário) e pressione Enter.
+
+3. Preencha os dados solicitados:
+   - O sistema pedirá algumas informações dependendo da funcionalidade escolhida. Por exemplo:
+   - Para Criar Usuário, informe o nome, e-mail e senha.
+   - Para Criar Projeto, forneça o título do projeto, uma descrição, e o ID do usuário responsável.
+     
+4. Confira os resultados:
+   ```
+      Usuário criado com sucesso!
+   ```
+5. Repita o processo:
+   - Após cada operação, o sistema retornará ao menu principal para que você possa escolher outra funcionalidade.
+     
+7. Finalizando o uso:
+   - Quando quiser sair do sistema, escolha a opção 11 (Sair) no menu principal e pressione Enter. Isso encerrará o sistema.
 
 ### **Observações**
   - Criar Usuário e Criar Projeto requerem informações específicas como nome, e-mail e ID de usuário (no caso de projetos).
