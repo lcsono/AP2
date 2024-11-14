@@ -27,7 +27,9 @@ def main():
             email = input("Digite o seu melhor Email: ")
             senha = input("Digite uma senha: ")
             resultado = criar_usuario(db, nome, email, senha)
-            print(resultado["message"])
+            print("-----------------------------------")
+            print(f"|   {resultado['message']}     |")
+            print("-----------------------------------")
 
         elif escolha == "2":
             resultado = listar_usuarios(db)
@@ -42,8 +44,11 @@ def main():
             titulo = input("Título do Projeto: ")
             descricao = input("Descrição: ")
             criador_id = int(input("ID do Usuário a ser vinculado: "))
+            
             resultado = criar_projeto(db, titulo, descricao, criador_id)
-            print(resultado["message"])
+            print("-----------------------------------")
+            print(f"|   {resultado['message']}     |")
+            print("-----------------------------------")
         
         elif escolha == "4":
             resultado = listar_projetos(db)
@@ -64,14 +69,15 @@ def main():
         elif escolha == "6":
             projeto_id = int(input("Digite o ID do Projeto que deseja excluir: "))
             resultado = excluir_projeto(db, projeto_id)  
-            print(resultado["message"])
+            print("-----------------------------------")
+            print(f"|   {resultado['message']}     |")
+            print("-----------------------------------")
 
         elif escolha == "7":
             id_projeto = int(input("ID do Projeto: "))
             id_usuario = int(input("ID do Usuário a ser vinculado: "))
             titulo = input("Título da Tarefa: ")
             descricao = input("Descrição: ")
-            
             prioridade_input = input("Prioridade (1: para Baixa, 2: para Média, 3: para Alta): ")
             
             try:
@@ -81,7 +87,9 @@ def main():
                 prioridade_input = 1
 
             resultado = criar_tarefa(db, titulo, descricao, id_projeto, id_usuario, prioridade_input)
-            print(resultado["message"])
+            print("-----------------------------------")
+            print(f"|   {resultado['message']}     |")
+            print("-----------------------------------")
 
         elif escolha == "8":
             resultado = listar_tarefas(db)
@@ -105,12 +113,16 @@ def main():
                 nova_prioridade = int(nova_prioridade)  
             
             resultado = atualizar_tarefa(db, tarefa_id, novo_titulo or None, nova_descricao or None, novo_status or None, nova_prioridade)
-            print(resultado["message"])
+            print("-----------------------------------")
+            print(f"|   {resultado['message']}     |")
+            print("-----------------------------------")
 
         elif escolha == "10":
             tarefa_id = int(input("ID da Tarefa a ser excluída: "))
             resultado = excluir_tarefa(db, tarefa_id)
-            print(resultado["message"])
+            print("-----------------------------------")
+            print(f"|   {resultado['message']}     |")
+            print("-----------------------------------")
 
         elif escolha == "11":
             print("Saindo...")

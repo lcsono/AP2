@@ -2,14 +2,16 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from models import Usuario, Projeto, Tarefa
 
-# Funções de Usuário
 def criar_usuario(db: Session, nome: str, email: str, senha: str):
     try:
         usuario = Usuario(nome=nome, email=email, senha=senha)
         db.add(usuario)
         db.commit()
         db.refresh(usuario)
-        return {"success": True, "message": "Usuário criado com sucesso!", "usuario": usuario}
+        return {
+          "success": True, 
+          "message": "\033[32mUsuário criado com sucesso!\033[0m", 
+          "usuario": usuario}
     except SQLAlchemyError as e:
         db.rollback()
         return {"success": False, "message": f"Erro ao criar usuário: {str(e)}"}
@@ -21,17 +23,18 @@ def listar_usuarios(db: Session):
     except SQLAlchemyError as e:
         return {"success": False, "message": f"Erro ao listar usuários: {str(e)}"}
 
-# Funções de Projeto
+
 def criar_projeto(db: Session, titulo: str, descricao: str, id_usuario: int):
     try:
         projeto = Projeto(titulo=titulo, descricao=descricao, id_usuario=id_usuario)
         db.add(projeto)
         db.commit()
         db.refresh(projeto)
-        return {"success": True, "message": "Projeto criado com sucesso!", "projeto": projeto}
+        return {"success": True, "message": "\033[32mProjeto criado com sucesso!\033[0m", "projeto": projeto}
     except SQLAlchemyError as e:
         db.rollback()
         return {"success": False, "message": f"Erro ao criar projeto: {str(e)}"}
+
 
 def listar_projetos(db: Session):
     try:
@@ -40,7 +43,7 @@ def listar_projetos(db: Session):
     except SQLAlchemyError as e:
         return {"success": False, "message": f"Erro ao listar projetos: {str(e)}"}
 
-# crud.py (Função de editar projeto)
+
 def atualizar_projeto(db: Session, projeto_id: int, novo_titulo: str = None, nova_descricao: str = None):
     try:
         projeto = db.query(Projeto).filter(Projeto.id == projeto_id).first()
@@ -51,7 +54,7 @@ def atualizar_projeto(db: Session, projeto_id: int, novo_titulo: str = None, nov
                 projeto.descricao = nova_descricao
             db.commit()
             db.refresh(projeto)
-            return {"success": True, "message": "Projeto atualizado com sucesso!", "projeto": projeto}
+            return {"success": True, "message": "\033[32mProjeto atualizado com sucesso!\033[0m", "projeto": projeto}
         else:
             return {"success": False, "message": "Projeto não encontrado."}
     except SQLAlchemyError as e:
@@ -87,13 +90,12 @@ def excluir_projeto(db: Session, projeto_id: int):
         return {"success": False, "message": f"Erro ao excluir projeto: {str(e)}"}
 
 
-# Funções de Tarefa
 def criar_tarefa(db: Session, titulo: str, descricao: str, id_projeto: int, id_usuario: int, prioridade: int = 1):
     try:
         prioridades = {1: 'Baixa', 2: 'Média', 3: 'Alta'}
         
         if prioridade not in prioridades:
-            return {"success": False, "message": "Prioridade inválida. Use 1 para Baixa, 2 para Média ou 3 para Alta."}
+            return {"success": False, "message": "Prioridade inválida. Use 1 para Baixa, 2 para Média ou 3 para Alta.\033[0m"}
         
         tarefa = Tarefa(titulo=titulo, descricao=descricao, id_projeto=id_projeto, id_usuario=id_usuario, prioridade=prioridades[prioridade])
         
@@ -101,7 +103,7 @@ def criar_tarefa(db: Session, titulo: str, descricao: str, id_projeto: int, id_u
         db.commit()
         db.refresh(tarefa)
         
-        return {"success": True, "message": "Tarefa criada com sucesso!", "tarefa": tarefa}
+        return {"success": True, "message": "\033[32mTarefa criada com sucesso!\033[0m", "tarefa": tarefa}
     
     except SQLAlchemyError as e:
         db.rollback()
@@ -138,7 +140,7 @@ def atualizar_tarefa(db: Session, tarefa_id: int, titulo: str = None, descricao:
                     return {"success": False, "message": "Prioridade inválida. Use 1 para Baixa, 2 para Média ou 3 para Alta."}
             db.commit()
             db.refresh(tarefa)
-            return {"success": True, "message": "Tarefa atualizada com sucesso!", "tarefa": tarefa}
+            return {"success": True, "message": "\033[32mTarefa atualizada com sucesso!\033[0m", "tarefa": tarefa}
         else:
             return {"success": False, "message": "Tarefa não encontrada."}
     except SQLAlchemyError as e:
@@ -152,7 +154,7 @@ def excluir_tarefa(db: Session, tarefa_id: int):
         if tarefa:
             db.delete(tarefa)
             db.commit()
-            return {"success": True, "message": "Tarefa excluída com sucesso!"}
+            return {"success": True, "message": "\033[32mTarefa excluída com sucesso!\033[0m"}
         else:
             return {"success": False, "message": "Tarefa não encontrada."}
     except SQLAlchemyError as e:
