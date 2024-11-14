@@ -1,5 +1,5 @@
 from db_config import SessionLocal, Base, engine
-from crud import criar_usuario, criar_projeto, criar_tarefa, listar_tarefas, listar_usuarios, listar_projetos, atualizar_tarefa, excluir_tarefa, atualizar_projeto, excluir_projeto
+from crud import criar_usuario, criar_projeto, criar_tarefa, listar_tarefas, listar_usuarios, listar_projetos, atualizar_tarefa, excluir_tarefa, atualizar_projeto, excluir_projeto, solicitar_id
 # from secao import login, usuario_logado
 
 Base.metadata.create_all(bind=engine)
@@ -33,13 +33,16 @@ def main():
 
         elif escolha == "2":
             resultado = listar_usuarios(db)
-            if resultado["success"]:
+            if resultado["success"] and resultado["usuarios"]:
                 print("\n         \033[34m--- Lista de Usuários ---\033[0m     ")
                 for usuario in resultado["usuarios"]:
-                  print(f"ID Usuário: {usuario.id}, Nome: {usuario.nome}, Email: {usuario.email}")
-                  print("\033[34m-------------------------------------------------\033[0m")
+                    print(f"ID Usuário: {usuario.id}, Nome: {usuario.nome}, Email: {usuario.email}")
+                    print("\033[34m-------------------------------------------------\033[0m")
             else:
-                print(resultado["message"])
+                print("\033[34m--------------------------------------------------------------\033[0m")
+                print("\033[33mNenhum registro encontrado. Por favor, cadastre um usuário.\033[0m")
+                print("\033[34m--------------------------------------------------------------\033[0m")
+
 
         elif escolha == "3":          
             usuarios = listar_usuarios(db)
@@ -48,10 +51,10 @@ def main():
             else:
                 print("\n     \033[34m--- Usuários Disponíveis ---\033[0m  ")
                 for usuario in usuarios["usuarios"]:
-                  print(f"ID: {usuario.id} - Nome: {usuario.nome} - Email: {usuario.email}")
-                  print("\033[34m----------------------------------------------------\033[0m")
+                    print(f"ID: {usuario.id} - Nome: {usuario.nome} - Email: {usuario.email}")
+                    print("\033[34m----------------------------------------------------\033[0m")
                 
-                criador_id = int(input("Digite o ID do usuário que deseja vincular ao projeto: "))
+                criador_id = solicitar_id("Digite o ID do usuário que deseja vincular ao projeto: ")
                 titulo = input("Título do Projeto: ")
                 descricao = input("Descrição: ")
                 
@@ -61,29 +64,31 @@ def main():
                 print(f"|   {resultado['message']}   |")
                 print("-----------------------------------")
 
-        
         elif escolha == "4":
             resultado = listar_projetos(db)
-            if resultado["success"]:
+            if resultado["success"] and resultado["projetos"]:
                 print("\n        \033[34m--- Lista de Projetos ---\033[0m       ")
                 for projeto in resultado["projetos"]:
-                  print(f"Projeto ID: {projeto.id}, Título: {projeto.titulo}, Descrição: {projeto.descricao}")
-                  print("\033[34m-------------------------------------------------\033[0m")
+                    print(f"Projeto ID: {projeto.id}, Título: {projeto.titulo}, Descrição: {projeto.descricao}")
+                    print("\033[34m-------------------------------------------------\033[0m")
             else:
-                print(resultado["message"])
+                print("\033[34m--------------------------------------------------------------\033[0m")
+                print("| \033[33mNenhum registro encontrado. Por favor, cadastre um projeto.| \033[0m")
+                print("\033[34m--------------------------------------------------------------\033[0m")
+
 
         elif escolha == "5":
-            projeto_id = int(input("Digite o ID do Projeto que deseja editar: "))
+            id_projeto = solicitar_id("Digite o ID do Projeto que deseja editar: ")
             novo_titulo = input("Novo Título (deixar em branco para não alterar): ")
             nova_descricao = input("Nova Descrição (deixar em branco para não alterar): ")
-            resultado = atualizar_projeto(db, projeto_id, novo_titulo or None, nova_descricao or None)
+            resultado = atualizar_projeto(db, id_projeto, novo_titulo or None, nova_descricao or None)
             print(resultado["message"])
 
         elif escolha == "6":
-            projeto_id = int(input("Digite o ID do Projeto que deseja excluir: "))
-            resultado = excluir_projeto(db, projeto_id)  
+            id_projeto = solicitar_id("Digite o ID do Projeto que deseja excluir: ")
+            resultado = excluir_projeto(db, id_projeto)  
             print("-----------------------------------")
-            print(f"|   {resultado['message']}     |")
+            print(f"{resultado['message']}")
             print("-----------------------------------")
 
         elif escolha == "7":            
@@ -105,11 +110,11 @@ def main():
                     print(f"ID: {projeto.id} - Título: {projeto.titulo} - Descrição: {projeto.titulo}")
                 print("\033[34m------------------------------------------\033[0m")
                 
-                id_projeto = int(input("ID do Projeto: "))
-                id_usuario = int(input("ID do Usuário a ser vinculado: "))
+                id_projeto = solicitar_id("ID do Projeto: ")
+                id_usuario = solicitar_id("ID do Usuário a ser vinculado: ")
                 titulo = input("Título da Tarefa: ")
                 descricao = input("Descrição: ")
-                prioridade_input = input("Prioridade (1: para Baixa, 2: para Média, 3: para Alta): ")
+                prioridade_input = solicitar_id("Prioridade (1: para Baixa, 2: para Média, 3: para Alta): ")
 
                 try:
                     prioridade = int(prioridade_input)
@@ -118,26 +123,23 @@ def main():
                 except ValueError:
                     print("\033[33mPrioridade inválida. A tarefa não foi criada.\033[0m")
                 else:
-                    try:
-                        prioridade_input = int(prioridade_input)
-                    except ValueError:
-                        print("Prioridade inválida! Definindo como 'Baixa'.")
-                        prioridade_input = 1
-
-                    resultado = criar_tarefa(db, titulo, descricao, id_projeto, id_usuario, prioridade_input)
+                    resultado = criar_tarefa(db, titulo, descricao, id_projeto, id_usuario, prioridade)
                     print("-----------------------------------")
                     print(f"|   {resultado['message']}     |")
                     print("-----------------------------------")
 
         elif escolha == "8":
             resultado = listar_tarefas(db)
-            if resultado["success"]:
+            if resultado["success"] and resultado["tarefas"]:
                 print("\n       \033[34m--- Lista de Tarefas ---\033[0m      ")
                 for tarefa in resultado["tarefas"]:
-                  print(f"Tarefa ID: {tarefa.id}, Título: {tarefa.titulo}, Descrição: {tarefa.descricao}, Status: {tarefa.status}, Prioridade: {tarefa.prioridade}")
-                  print("\033[34m-------------------------------------------------------\033[0m")
+                    print(f"Tarefa ID: {tarefa.id}, Título: {tarefa.titulo}, Descrição: {tarefa.descricao}, Status: {tarefa.status}, Prioridade: {tarefa.prioridade}")
+                    print("\033[34m-------------------------------------------------------\033[0m")
             else:
-                print(resultado["message"])
+                print("\033[34m--------------------------------------------------------------\033[0m")
+                print("| \033[33mNenhum registro encontrado. Por favor, cadastre uma tarefa.| \033[0m")
+                print("\033[34m--------------------------------------------------------------\033[0m")
+
 
         elif escolha == "9":
             tarefa_id = int(input("ID da Tarefa que será atualizada: "))
@@ -157,7 +159,7 @@ def main():
             print("-----------------------------------")
 
         elif escolha == "10":
-            tarefa_id = int(input("ID da Tarefa a ser excluída: "))
+            tarefa_id = solicitar_id("ID da Tarefa a ser excluída: ")
             resultado = excluir_tarefa(db, tarefa_id)
             print("-----------------------------------")
             print(f"|   {resultado['message']}     |")

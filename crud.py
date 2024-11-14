@@ -44,9 +44,9 @@ def listar_projetos(db: Session):
         return {"success": False, "message": f"Erro ao listar projetos: {str(e)}"}
 
 
-def atualizar_projeto(db: Session, projeto_id: int, novo_titulo: str = None, nova_descricao: str = None):
+def atualizar_projeto(db: Session, id_projeto: int, novo_titulo: str = None, nova_descricao: str = None):
     try:
-        projeto = db.query(Projeto).filter(Projeto.id == projeto_id).first()
+        projeto = db.query(Projeto).filter(Projeto.id == id_projeto).first()
         if projeto:
             if novo_titulo:
                 projeto.titulo = novo_titulo
@@ -61,9 +61,9 @@ def atualizar_projeto(db: Session, projeto_id: int, novo_titulo: str = None, nov
         db.rollback()
         return {"success": False, "message": f"Erro ao atualizar projeto: {str(e)}"}
 
-def excluir_projeto(db: Session, projeto_id: int):
+def excluir_projeto(db: Session, id_projeto: int):
     try:
-        tarefas_vinculadas = db.query(Tarefa).filter(Tarefa.id_projeto == projeto_id).all()
+        tarefas_vinculadas = db.query(Tarefa).filter(Tarefa.id_projeto == id_projeto).all()
 
         if tarefas_vinculadas:
             tarefas_nomes = [tarefa.titulo for tarefa in tarefas_vinculadas]
@@ -73,7 +73,7 @@ def excluir_projeto(db: Session, projeto_id: int):
                            "Por favor, finalize e exclua essa(s) tarefa(s) antes de excluir o projeto.\033[0m"
             }
         
-        projeto = db.query(Projeto).filter(Projeto.id == projeto_id).first()
+        projeto = db.query(Projeto).filter(Projeto.id == id_projeto).first()
         if projeto:
             db.delete(projeto)
             db.commit()
@@ -160,3 +160,12 @@ def excluir_tarefa(db: Session, tarefa_id: int):
     except SQLAlchemyError as e:
         db.rollback()
         return {"success": False, "message": f"Erro ao excluir tarefa: {str(e)}"}
+
+def solicitar_id(mensagem: str) -> int:
+    while True:
+        try:
+            entrada = input(mensagem).strip() 
+            return int(entrada) 
+        except ValueError:
+            print("\033[33mEntrada inválida! Por favor, insira um número.\033[0m")
+
