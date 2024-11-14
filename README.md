@@ -85,14 +85,19 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
    - Quando quiser sair do sistema, escolha a opção 11 (Sair) no menu principal e pressione Enter. Isso encerrará o sistema.
 
 ## **Observações**
+  💡 Dicas para Usuários:
+
+  - Organização: Antes de excluir um projeto, verifique se não há tarefas vinculadas a ele.
+  - Consulta de IDs: Utilize as opções Listar Usuários (2), Listar Projetos (4) ou Listar Tarefas (8) para verificar IDs necessários em outras operações, como criar ou atualizar tarefas e projetos.
+  - Prioridades: Ao criar ou atualizar uma tarefa, você pode escolher a prioridade digitando:
+    - 1 para Baixa
+    - 2 para Média
+    - 3 para Alta
   - Criar Usuário e Criar Projeto requerem informações específicas como nome, e-mail e ID de usuário (no caso de projetos).
-  - Ao Excluir um Projeto, o sistema verificará se há tarefas vinculadas a ele. Se houver, será necessário primeiro excluir ou finalizar as tarefas para poder remover o projeto. 
-  - A Prioridade das Tarefas pode ser configurada para "Baixa", "Média" ou "Alta", sendo representada pelos números 1, 2 e 3, respectivamente.
-  - O sistema não deixará criar o projeto sem antes vincular a um usuário.
-  - O sistema não deixará criar a tarefa sem antes vincular a um projeto e a umusuário.
-  - Ao criar o usuário, o mesmo deve selecionar a opção 'Listar Usuário' para ter seu ID.
-  - Ao criar o Projeto, o usuário precisa selecionar a opção 'Listar Projeto' para ter o ID de seu projeto
-  - Ao criar Tarefa, o usuário precisa selecionar a opção 'Listar Tarefa' para ter o ID de sua tarefa.
+  - O sistema não deixará criar um projeto sem antes vincular a um usuário.
+  - O sistema não deixará criar uma tarefa sem antes vincular a um projeto e a um usuário.
+  - Ao criar o Projeto, os usuário cadastrados serão listados no console, assim o usuário visualizara as opções para vinvular o seu projeto
+  - Ao criar Tarefa, os usuário e projeto cadastrados serão listados no console, assim o usuário visualizara as opções para vinvular a sua tarefa.
 
 ### Requisitos
 - Python 3.8+
