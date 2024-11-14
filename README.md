@@ -49,7 +49,7 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
   - Ação: Escolha a opção 11. O sistema será encerrado e você voltará para o prompt de comando.
 
 
-###  **Como Usar**
+##  **Como Usar o Sistema de Gerenciamento de Tarefas**
 1. Acesse o sistema: 
   Ao abrir o sistema, você verá um menu com as seguintes opções:
    ```
@@ -84,7 +84,7 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
 7. Finalizando o uso:
    - Quando quiser sair do sistema, escolha a opção 11 (Sair) no menu principal e pressione Enter. Isso encerrará o sistema.
 
-### **Observações**
+## **Observações**
   - Criar Usuário e Criar Projeto requerem informações específicas como nome, e-mail e ID de usuário (no caso de projetos).
   - Ao Excluir um Projeto, o sistema verificará se há tarefas vinculadas a ele. Se houver, será necessário primeiro excluir ou finalizar as tarefas para poder remover o projeto. 
   - A Prioridade das Tarefas pode ser configurada para "Baixa", "Média" ou "Alta", sendo representada pelos números 1, 2 e 3, respectivamente.
