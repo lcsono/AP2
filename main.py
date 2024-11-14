@@ -1,6 +1,5 @@
 from db_config import SessionLocal, Base, engine
 from crud import criar_usuario, criar_projeto, criar_tarefa, listar_tarefas, listar_usuarios, listar_projetos, atualizar_tarefa, excluir_tarefa, atualizar_projeto, excluir_projeto, solicitar_id
-# from secao import login, usuario_logado
 
 Base.metadata.create_all(bind=engine)
 
