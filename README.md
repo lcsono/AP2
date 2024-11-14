@@ -7,41 +7,42 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
 ### 1. Criar Usuário
   - Objetivo: Adicionar um novo usuário ao projeto.
   - Ação: Escolha a opção 1 no menu principal. Você será solicitado a fornecer o nome, e-mail e senha do novo usuário. Após preencher as informações, o sistema criará o usuário.
-  - O sistema não deixará criar projeto sem o usuário.
 
 ### 2. Listar Usuários
   - Objetivo: Visualizar todos os usuários cadastrados .
-  - Ação: O sistema irá listar todos os usuários cadastrados com seus respectivos IDs, nomes e e-mails.
+  - Ação: Irá trazer uma lista de todos os usuários cadastrados.
     
 ### 3. Criar Projeto
   - Objetivo: Criar um novo projeto.
   - Ação: Será necessário fornecer o título, a descrição do projeto e o ID do usuário responsável por ele. Após preencher essas informações, o sistema criará o projeto.
+  - obs: O sistema não deixará criar o projeto sem vincular a um usuário.
 
 ### 4. Listar Projetos
   - Objetivo: Criar um novo projeto cadastrados .
-  - Ação: O sistema irá listar todos os projetos cadastrados.
+  - Ação: Irá trazer uma lista com todos os projetos cadastrados.
 
 ### 5. Editar Projeto
   - Objetivo: Atualizar um novo projeto.
-  - Ação: Essa ação ira atualizar o seu projeto, conforme os novos dados que o usuário ira fornecer.
+  - Ação: Essa ação ira atualizar um projeto, conforme os novos dados que o usuário ira fornecer.
 
 ### 6. Excluir Projeto
   - Objetivo: Excluir projetos existentes.
   - Ação: Essa ação ira excluir a tarefa cuja id foi passado na ação, conforme as validações corretas.
 
-### Criar tarefa
+### 7. Criar tarefa
   - Objetivo: Criar tarefa
   - Ação: Essa ação irá criar tarefa vinculada ao projeto, irá solicitar o ID do projeto, ID do usuário, o título da tarefa, descrição e sua prioridade.
+  -  obs: O sistema não deixará criar a tarefa sem antes vincular a um projeto e a umusuário.
 
-### Listar Tarefa
+### 8. Listar Tarefa
   - Objetivo: Listar as tarefas
-  - Ação: Irá listar as tarefas, com seu ID, o título, descrição e prioridade.
+  - Ação: Irá trazer uma lista de todas as tarefas cadastradas.
 
-### Atualizar Tarefa
+### 9. Atualizar Tarefa
   - Objetivo: Atualizar informações da tarefa
-  - Ação: Irá solicitar o ID da tarefa a ser alterada,  seu novo título, nova descrição, o status da tarefa (Em andamento, finalizada) e nova prioridade.
+  - Ação: Irá solicitar o ID da tarefa a ser alterada, logo ira atualizar a tarefa conforme os dados fornecido.
 
-### Excluir Tarefa
+### 10. Excluir Tarefa
   - Objetivo: Excluir tarefa
   - Ação: Irá solicitar o ID da tarefa e irá excluir.
 
@@ -72,25 +73,7 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
   - Ao criar o Projeto, o usuário precisa selecionar a opção 'Listar Projeto' para ter o ID de seu projeto
   - Ao criar Tarefa, o usuário precisa selecionar a opção 'Listar Tarefa' para ter o ID de sua tarefa.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Requisitos
+- Python 3.8+
+- SQLAlchemy
+- SQLite ou outro banco configurado
