@@ -69,15 +69,15 @@ def excluir_projeto(db: Session, projeto_id: int):
             tarefas_nomes = [tarefa.titulo for tarefa in tarefas_vinculadas]
             return {
                 "success": False,
-                "message": f"Não é possível excluir o projeto. Existem tarefas vinculadas a ela, tarefa(s): {', '.join(tarefas_nomes)}.\n"
-                           "Por favor, finalize e exclua essa(s) tarefa(s) antes de excluir o projeto."
+                "message": f"\033[33mNão é possível excluir o projeto. Existem tarefas vinculadas a ela, tarefa(s) vinculadas: ({' - '.join(tarefas_nomes)}).\n"
+                           "Por favor, finalize e exclua essa(s) tarefa(s) antes de excluir o projeto.\033[0m"
             }
         
         projeto = db.query(Projeto).filter(Projeto.id == projeto_id).first()
         if projeto:
             db.delete(projeto)
             db.commit()
-            return {"success": True, "message": "Projeto excluído com sucesso!"}
+            return {"success": True, "message": "\033[32mProjeto excluído com sucesso!\033[0m"}
         else:
             return {"success": False, "message": "Projeto não encontrado."}
 
