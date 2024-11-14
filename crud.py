@@ -54,7 +54,7 @@ def atualizar_projeto(db: Session, id_projeto: int, novo_titulo: str = None, nov
                 projeto.descricao = nova_descricao
             db.commit()
             db.refresh(projeto)
-            return {"success": True, "message": "\033[32mProjeto atualizado com sucesso!\033[0m", "projeto": projeto}
+            return {"success": True, "message": "\n \033[32mProjeto atualizado com sucesso!\033[0m", "projeto": projeto}
         else:
             return {"success": False, "message": "Projeto não encontrado."}
     except SQLAlchemyError as e:
