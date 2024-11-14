@@ -15,7 +15,6 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
 ### 3. Criar Projeto
   - Objetivo: Criar um novo projeto.
   - Ação: Será necessário fornecer o título, a descrição do projeto e o ID do usuário responsável por ele. Após preencher essas informações, o sistema criará o projeto.
-  - obs: O sistema não deixará criar o projeto sem vincular a um usuário.
 
 ### 4. Listar Projetos
   - Objetivo: Criar um novo projeto cadastrados .
@@ -32,7 +31,6 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
 ### 7. Criar tarefa
   - Objetivo: Criar tarefa
   - Ação: Essa ação irá criar tarefa vinculada ao projeto, irá solicitar o ID do projeto, ID do usuário, o título da tarefa, descrição e sua prioridade.
-  -  obs: O sistema não deixará criar a tarefa sem antes vincular a um projeto e a umusuário.
 
 ### 8. Listar Tarefa
   - Objetivo: Listar as tarefas
@@ -68,7 +66,8 @@ Este é um sistema simples para gerenciar usuários, projetos e tarefas, com uma
   - Criar Usuário e Criar Projeto requerem informações específicas como nome, e-mail e ID de usuário (no caso de projetos).
   - Ao Excluir um Projeto, o sistema verificará se há tarefas vinculadas a ele. Se houver, será necessário primeiro excluir ou finalizar as tarefas para poder remover o projeto. 
   - A Prioridade das Tarefas pode ser configurada para "Baixa", "Média" ou "Alta", sendo representada pelos números 1, 2 e 3, respectivamente.
-  - O sistema só deixará criar um Projeto se houver um Usuário criado.
+  - O sistema não deixará criar o projeto sem antes vincular a um usuário.
+  - O sistema não deixará criar a tarefa sem antes vincular a um projeto e a umusuário.
   - Ao criar o usuário, o mesmo deve selecionar a opção 'Listar Usuário' para ter seu ID.
   - Ao criar o Projeto, o usuário precisa selecionar a opção 'Listar Projeto' para ter o ID de seu projeto
   - Ao criar Tarefa, o usuário precisa selecionar a opção 'Listar Tarefa' para ter o ID de sua tarefa.
